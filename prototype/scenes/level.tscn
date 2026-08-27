@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://c3fhtbo1regfs"]
+
+[ext_resource type="Script" uid="uid://tonyox48bs2d" path="res://prototype/scripts/level.gd" id="1_1mq2o"]
+[ext_resource type="PackedScene" uid="uid://bi6loeebx4l5e" path="res://prototype/scenes/entity.tscn" id="1_radog"]
+[ext_resource type="Script" uid="uid://d2reo5dnsygii" path="res://prototype/scripts/gun.gd" id="2_1mq2o"]
+
+[node name="Level" type="Node2D" unique_id=1174901981]
+script = ExtResource("1_1mq2o")
+
+[node name="Entities" type="Node2D" parent="." unique_id=1317776501]
+
+[node name="Entity" parent="Entities" unique_id=418024899 instance=ExtResource("1_radog")]
+position = Vector2(254, -85)
+
+[node name="Entity3" parent="Entities" unique_id=499202103 instance=ExtResource("1_radog")]
+position = Vector2(45, 42)
+
+[node name="Entity4" parent="Entities" unique_id=1649802319 instance=ExtResource("1_radog")]
+position = Vector2(225, 7)
+
+[node name="Entity5" parent="Entities" unique_id=1795813927 instance=ExtResource("1_radog")]
+position = Vector2(27, -70)
+
+[node name="Entity2" parent="Entities" unique_id=941095240 instance=ExtResource("1_radog")]
+position = Vector2(-139, -111)
+
+[node name="Entity8" parent="Entities" unique_id=525792954 instance=ExtResource("1_radog")]
+position = Vector2(-252, 83)
+
+[node name="Entity7" parent="Entities" unique_id=305007830 instance=ExtResource("1_radog")]
+position = Vector2(-134, 22)
+
+[node name="Entity6" parent="Entities" unique_id=480198372 instance=ExtResource("1_radog")]
+position = Vector2(176, 93)
+
+[node name="Gun" type="Node2D" parent="." unique_id=245526229]
+position = Vector2(0, 179)
+script = ExtResource("2_1mq2o")
+speed = 5.0
+tilt_angle = 45.0
+
+[node name="ColorRect" type="ColorRect" parent="Gun" unique_id=324437832]
+offset_left = -3.0
+offset_top = -50.0
+offset_right = 3.0
+offset_bottom = 50.0
+
+[node name="Projectile" type="ColorRect" parent="Gun" unique_id=283968550]
+offset_left = -1.0
+offset_top = -400.0
+offset_right = 1.0
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(1, 0)
+
+[node name="RayCast2D" type="RayCast2D" parent="Gun" unique_id=1036489585]
+target_position = Vector2(0, -1000)

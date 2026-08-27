@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://dc47pggqpgj2v"]
+
+[ext_resource type="Script" uid="uid://dv4bfdrheltjk" path="res://prototype/scripts/side.gd" id="1_1xjly"]
+[ext_resource type="Texture2D" uid="uid://bmtlg44ywxjc3" path="res://prototype/tile.png" id="1_lx23q"]
+
+[node name="Side" type="Control" unique_id=2046380939 node_paths=PackedStringArray("eyes")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_1xjly")
+eyes = [NodePath("TextureRect"), NodePath("TextureRect2"), NodePath("TextureRect3"), NodePath("TextureRect4"), NodePath("TextureRect7"), NodePath("TextureRect8"), NodePath("TextureRect5"), NodePath("TextureRect6"), NodePath("TextureRect9")]
+
+[node name="TextureRect10" type="TextureRect" parent="." unique_id=885293661]
+modulate = Color(0.4506483, 0.4506483, 0.45064825, 1)
+layout_mode = 0
+offset_left = -24.0
+offset_top = -12.0
+offset_right = 24.0
+offset_bottom = 12.0
+texture = ExtResource("1_lx23q")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1600761569]
+layout_mode = 0
+offset_left = -36.2
+offset_top = -12.200001
+offset_right = 11.799999
+offset_bottom = 11.799999
+scale = Vector2(0.2, 0.2)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("1_lx23q")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1804867966]
+layout_mode = 0
+offset_left = -30.0
+offset_top = -9.599999
+offset_right = 18.0
+offset_bottom = 14.400001
+scale = Vector2(0.2, 0.2)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("1_lx23q")
+
+[node name="TextureRect3" type="TextureRect" parent="." unique_id=1149969298]
+layout_mode = 0
+offset_left = -24.000002
+offset_top = -6.5999994
+offset_right = 23.999998
+offset_bottom = 17.400002
+scale = Vector2(0.2, 0.2)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("1_lx23q")
+
+[node name="TextureRect4" type="TextureRect" parent="." unique_id=881942575]
+layout_mode = 0
+offset_left = -30.0
+offset_top = -15.6
+offset_right = 18.0
+offset_bottom = 8.4
+scale = Vector2(0.2, 0.2)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("1_lx23q")
+
+[node name="TextureRect7" type="TextureRect" parent="." unique_id=1257250248]
+layout_mode = 0
+offset_left = -24.000002
+offset_top = -12.599999
+offset_right = 23.999998
+offset_bottom = 11.400001
+scale = Vector2(0.2, 0.2)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("1_lx23q")
+
+[node name="TextureRect8" type="TextureRect" parent="." unique_id=1234253335]
+layout_mode = 0
+offset_left = -18.000002
+offset_top = -9.599999
+offset_right = 29.999998
+offset_bottom = 14.400001
+scale = Vector2(0.2, 0.2)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("1_lx23q")
+
+[node name="TextureRect5" type="TextureRect" parent="." unique_id=293595355]
+layout_mode = 0
+offset_left = -24.000002
+offset_top = -18.6
+offset_right = 23.999998
+offset_bottom = 5.3999996
+scale = Vector2(0.2, 0.2)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("1_lx23q")
+
+[node name="TextureRect6" type="TextureRect" parent="." unique_id=1782596645]
+layout_mode = 0
+offset_left = -18.000002
+offset_top = -15.599998
+offset_right = 29.999998
+offset_bottom = 8.400002
+scale = Vector2(0.2, 0.2)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("1_lx23q")
+
+[node name="TextureRect9" type="TextureRect" parent="." unique_id=1745928962]
+layout_mode = 0
+offset_left = -12.000002
+offset_top = -12.599999
+offset_right = 36.0
+offset_bottom = 11.400001
+scale = Vector2(0.2, 0.2)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("1_lx23q")

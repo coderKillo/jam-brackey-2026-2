@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://b4vv6cjq76q8t"]
+
+[ext_resource type="Script" uid="uid://dub7mkilgalxj" path="res://prototype/scripts/prototype.gd" id="1_phkt6"]
+
+[node name="Prototype" type="Node2D" unique_id=289069396]
+script = ExtResource("1_phkt6")
+
+[node name="Town" type="Control" parent="." unique_id=1888528295]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Level" type="Button" parent="Town" unique_id=1365446871]
+layout_mode = 0
+offset_left = -214.0
+offset_top = -46.0
+offset_right = -129.0
+offset_bottom = -23.0
+scale = Vector2(2, 2)
+text = "LOAD LEVEL"
+
+[node name="AmmoButton" type="Button" parent="Town" unique_id=1152412473]
+layout_mode = 0
+offset_left = 89.0
+offset_top = -45.0
+offset_right = 157.0
+offset_bottom = -22.0
+scale = Vector2(2, 2)
+text = "Buy AMMO"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=423431927]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1775781564]
+layer = 2
+
+[node name="Gui" type="Control" parent="CanvasLayer" unique_id=1623965809]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="AmmoLabel" type="Label" parent="CanvasLayer/Gui" unique_id=1115788412]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 307.0
+offset_right = 67.0
+offset_bottom = 337.0
+theme_override_font_sizes/font_size = 32
+text = "1/2"
+
+[node name="PeopleLabel" type="Label" parent="CanvasLayer/Gui" unique_id=843603840]
+layout_mode = 0
+offset_left = 337.0
+offset_top = 12.0
+offset_right = 377.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 32
+text = "1/2"
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer/Gui" unique_id=1243972683]
+layout_mode = 0
+offset_left = 506.0
+offset_top = 12.0
+offset_right = 546.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 32
+text = "1/2"

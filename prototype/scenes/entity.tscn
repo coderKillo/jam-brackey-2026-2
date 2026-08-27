@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bi6loeebx4l5e"]
+
+[ext_resource type="Script" uid="uid://cx7rtn33u7xvf" path="res://prototype/scripts/entity.gd" id="1_7v8e8"]
+[ext_resource type="Theme" uid="uid://4r6b2cnujbph" path="res://assets/gui_assets/waste_no_space.theme" id="2_fulxd"]
+[ext_resource type="PackedScene" uid="uid://dc47pggqpgj2v" path="res://prototype/scenes/side.tscn" id="3_fulxd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c3t6r"]
+size = Vector2(41, 40)
+
+[node name="Entity" type="Node2D" unique_id=418024899 groups=["entity"]]
+script = ExtResource("1_7v8e8")
+
+[node name="Control" type="Control" parent="." unique_id=1527799002]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("2_fulxd")
+
+[node name="Button" type="Button" parent="Control" unique_id=976386477]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -11.0
+offset_top = -11.0
+offset_right = 9.0
+offset_bottom = 8.0
+
+[node name="Side" parent="Control" unique_id=2046380939 instance=ExtResource("3_fulxd")]
+layout_mode = 0
+offset_left = -0.3589859
+offset_top = -24.358986
+offset_right = 39.641014
+offset_bottom = 15.641014
+
+[node name="Side2" parent="Control" unique_id=1488138765 instance=ExtResource("3_fulxd")]
+layout_mode = 0
+offset_left = -11.358984
+offset_top = -5.358986
+offset_right = 28.641016
+offset_bottom = 34.641014
+rotation = -2.0943952
+
+[node name="Side3" parent="Control" unique_id=178982697 instance=ExtResource("3_fulxd")]
+layout_mode = 0
+offset_left = 10.641014
+offset_top = -5.358986
+offset_right = 50.641014
+offset_bottom = 34.641014
+rotation = 2.0943952
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1457997904]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=676772340]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_c3t6r")

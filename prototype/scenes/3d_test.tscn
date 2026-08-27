@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://cpx3kaffr7xdi"]
+
+[ext_resource type="Script" uid="uid://b1xggnbnw2toi" path="res://prototype/scripts/dice.gd" id="1_wmpmo"]
+[ext_resource type="Texture2D" uid="uid://coagxwvkac5ve" path="res://prototype/images/mouth.png" id="2_h53rk"]
+[ext_resource type="Shader" uid="uid://c6yd38n7lylwc" path="res://prototype/3d_test.gdshader" id="3_a3qdt"]
+[ext_resource type="Shader" uid="uid://dvc4gvjob5x6i" path="res://prototype/pixelation_3d.gdshader" id="3_h53rk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0dgia"]
+shader = ExtResource("3_a3qdt")
+shader_parameter/pixelSize = 2
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_h53rk"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vjfxv"]
+render_priority = 0
+shader = ExtResource("3_h53rk")
+shader_parameter/pixel_size = 2.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_c3t6r"]
+material = SubResource("ShaderMaterial_vjfxv")
+flip_faces = true
+size = Vector2(2, 2)
+
+[node name="3dTest" type="Node2D" unique_id=554417938]
+
+[node name="Control" type="Control" parent="." unique_id=1328862524]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=549054168]
+visible = false
+material = SubResource("ShaderMaterial_0dgia")
+position = Vector2(321, 181)
+texture = SubResource("ViewportTexture_h53rk")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1319915400]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=584463154]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(640, 360)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=1989673]
+transform = Transform3D(0.7071067, 0.35355335, -0.61237234, 0, 0.8660253, 0.49999997, 0.7071067, -0.35355335, 0.61237234, -1.314, 1.764, 1.314)
+projection = 1
+size = 10.0
+far = 2069.3
+
+[node name="Dice" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1411109840]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5046225, 0)
+script = ExtResource("1_wmpmo")
+
+[node name="Piviot" type="Node3D" parent="SubViewportContainer/SubViewport/Dice" unique_id=1936190407]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, 0)
+
+[node name="Model" type="Node3D" parent="SubViewportContainer/SubViewport/Dice/Piviot" unique_id=1072847732]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, 0)
+
+[node name="Sprite3D2" type="Sprite3D" parent="SubViewportContainer/SubViewport/Dice/Piviot/Model" unique_id=1823317576]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, -0.5)
+alpha_cut = 1
+texture = ExtResource("2_h53rk")
+
+[node name="Sprite3D" type="Sprite3D" parent="SubViewportContainer/SubViewport/Dice/Piviot/Model" unique_id=265668065]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0.5)
+alpha_cut = 1
+texture = ExtResource("2_h53rk")
+
+[node name="Sprite3D3" type="Sprite3D" parent="SubViewportContainer/SubViewport/Dice/Piviot/Model" unique_id=631371275]
+transform = Transform3D(-3.278354e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.278354e-08, 0.5, 0, 0)
+alpha_cut = 1
+texture = ExtResource("2_h53rk")
+
+[node name="Sprite3D4" type="Sprite3D" parent="SubViewportContainer/SubViewport/Dice/Piviot/Model" unique_id=2029768172]
+transform = Transform3D(-3.278354e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.278354e-08, -0.5, 0, 0)
+alpha_cut = 1
+texture = ExtResource("2_h53rk")
+
+[node name="Sprite3D5" type="Sprite3D" parent="SubViewportContainer/SubViewport/Dice/Piviot/Model" unique_id=756090732]
+transform = Transform3D(1.433014e-15, 0.75, -3.278354e-08, 3.278354e-08, -3.278354e-08, -0.75, -0.75, 0, -3.278354e-08, 0, -0.5, 0)
+alpha_cut = 1
+texture = ExtResource("2_h53rk")
+
+[node name="Sprite3D6" type="Sprite3D" parent="SubViewportContainer/SubViewport/Dice/Piviot/Model" unique_id=136024163]
+transform = Transform3D(1.433014e-15, 0.75, -3.278354e-08, 3.278354e-08, -3.278354e-08, -0.75, -0.75, 0, -3.278354e-08, 0, 0.5, 0)
+alpha_cut = 1
+texture = ExtResource("2_h53rk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport" unique_id=281833979]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.33938837)
+mesh = SubResource("QuadMesh_c3t6r")
