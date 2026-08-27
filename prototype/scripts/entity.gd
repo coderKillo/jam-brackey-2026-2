@@ -35,12 +35,21 @@ func move(direction: Vector2):
 	if not border.has_point(target_position):
 		target_position = global_position - move_distance * direction
 	var tween = self.create_tween()
+	tween.set_parallel(true)
 	(
 		tween
 		. tween_property(self, "global_position", target_position, 0.5)
 		. set_ease(Tween.EASE_OUT)
 		. set_trans(Tween.TRANS_EXPO)
 	)
+	(
+		tween
+		. tween_property($Control, "rotation_degrees", 120.0 * direction.x, 0.5)
+		. set_ease(Tween.EASE_OUT)
+		. set_trans(Tween.TRANS_EXPO)
+	)
+	await tween.finished
+	$Control.rotation_degrees = 0.0
 	_recalculate_sides()
 
 	for side in sides:

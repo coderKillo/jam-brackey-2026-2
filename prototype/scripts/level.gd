@@ -1,6 +1,6 @@
 extends Node2D
 
-const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.DOWN, Vector2.UP]
+const DIRECTIONS = [Vector2(1, 1), Vector2(1, -1), Vector2(-1, 1), Vector2(-1, -1)]
 
 signal level_end(corupted: int)
 

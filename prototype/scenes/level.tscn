@@ -44,6 +44,7 @@ offset_left = -3.0
 offset_top = -50.0
 offset_right = 3.0
 offset_bottom = 50.0
+color = Color(0.1882353, 0.1764706, 0.41568628, 1)
 
 [node name="Projectile" type="ColorRect" parent="Gun" unique_id=283968550]
 offset_left = -1.0
@@ -51,6 +52,7 @@ offset_top = -400.0
 offset_right = 1.0
 scale = Vector2(1e-05, 1)
 pivot_offset = Vector2(1, 0)
+color = Color(0.827451, 0.15686275, 0.21176471, 1)
 
 [node name="RayCast2D" type="RayCast2D" parent="Gun" unique_id=1036489585]
 target_position = Vector2(0, -1000)
