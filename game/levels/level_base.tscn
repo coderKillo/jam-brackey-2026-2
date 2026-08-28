@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://dpwxovf7bg0ql"]
+
+[ext_resource type="Script" uid="uid://gi24plob2g5t" path="res://game/levels/level.gd" id="1_bb1n0"]
+[ext_resource type="PackedScene" uid="uid://cnafej7k4y6aw" path="res://game/gun/gun.tscn" id="3_2nkcm"]
+[ext_resource type="Texture2D" uid="uid://ypprcnedbwu0" path="res://assets/shadow.png" id="3_bb1n0"]
+[ext_resource type="Script" uid="uid://ddvqn53vj32mu" path="res://game/levels/shadow.gd" id="3_j8nxo"]
+[ext_resource type="Theme" uid="uid://4r6b2cnujbph" path="res://assets/gui_assets/waste_no_space.theme" id="5_2nkcm"]
+[ext_resource type="Texture2D" uid="uid://qjebh6n3yn0b" path="res://assets/teeth.png" id="7_xuocq"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c3t6r"]
+blend_mode = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7xihh"]
+bg_color = Color(0.1882353, 0.1764706, 0.41568628, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xuocq"]
+bg_color = Color(0.827451, 0.15686275, 0.21176471, 1)
+
+[node name="Level" type="Node2D" unique_id=1280246299]
+script = ExtResource("1_bb1n0")
+
+[node name="BorderVisual" type="ColorRect" parent="." unique_id=1595242465]
+visible = false
+offset_left = 35.0
+offset_top = 45.0
+offset_right = 605.0
+offset_bottom = 270.0
+color = Color(1, 0.39999998, 0.39999998, 0.21176471)
+
+[node name="DiceGroup" type="Node2D" parent="." unique_id=1815678092]
+
+[node name="Shadow" type="Node2D" parent="." unique_id=644524178]
+visible = false
+script = ExtResource("3_j8nxo")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="Shadow" unique_id=1291065362]
+
+[node name="ColorRect" type="ColorRect" parent="Shadow/CanvasGroup" unique_id=1765143112]
+self_modulate = Color(1, 1, 1, 0.58431375)
+offset_left = -33.0
+offset_top = -13.0
+offset_right = 667.0
+offset_bottom = 387.0
+color = Color(0.039215688, 0.1254902, 0.18431373, 1)
+
+[node name="Center" type="Control" parent="Shadow/CanvasGroup/ColorRect" unique_id=631079490]
+anchors_preset = 0
+offset_left = 33.0
+offset_top = 13.0
+offset_right = 33.0
+offset_bottom = 13.0
+
+[node name="Center" type="TextureRect" parent="Shadow/CanvasGroup/ColorRect/Center" unique_id=2778969]
+material = SubResource("CanvasItemMaterial_c3t6r")
+layout_mode = 0
+offset_left = -98.0
+offset_top = -98.0
+offset_right = 98.0
+offset_bottom = 98.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_transform_enabled = true
+texture = ExtResource("3_bb1n0")
+
+[node name="Gun" parent="." unique_id=369018230 instance=ExtResource("3_2nkcm")]
+position = Vector2(320, 335)
+
+[node name="TimerBar" type="ProgressBar" parent="." unique_id=507142692]
+offset_left = 20.0
+offset_top = 5.0
+offset_right = 620.0
+offset_bottom = 15.0
+theme = ExtResource("5_2nkcm")
+theme_override_styles/background = SubResource("StyleBoxFlat_7xihh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xuocq")
+max_value = 1.0
+value = 0.4
+show_percentage = false
+
+[node name="TeethSprite" type="Sprite2D" parent="." unique_id=1864440887]
+visible = false
+position = Vector2(336.99997, 194.99998)
+texture = ExtResource("7_xuocq")
+
+[node name="FlashOverlay" type="ColorRect" parent="." unique_id=913967425]
+modulate = Color(1, 1, 1, 0)
+offset_left = -34.0
+offset_top = -18.0
+offset_right = 666.0
+offset_bottom = 382.0
+color = Color(0.827451, 0.15686275, 0.21176471, 1)
+
+[node name="OverlayText" type="RichTextLabel" parent="." unique_id=360587479]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_2nkcm")
+text = "Kill ALL terror dices!"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="OverlayText" unique_id=1556646757]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.039215688, 0.1254902, 0.18431373, 1)

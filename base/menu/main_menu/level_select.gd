@@ -4,13 +4,7 @@ extends Control
 
 
 func _ready():
-	for i in GameState.get_max_level_reached() + 1:
-		var button = Button.new()
-		button.custom_minimum_size = minimal_button_size
-		button.text = "Level %s" % (i + 1)
-		button.pressed.connect(_on_load_level.bind(i))
-
-		%LevelContainer.add_child(button)
+	pass
 
 
 func _on_load_level(id: int):

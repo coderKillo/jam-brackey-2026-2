@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cnafej7k4y6aw"]
+
+[ext_resource type="Script" uid="uid://de2w7xtvxxcn6" path="res://game/gun/gun.gd" id="1_i80m3"]
+[ext_resource type="Texture2D" uid="uid://cxpuypedm1cmo" path="res://assets/placeholders/gun.png" id="2_thmnc"]
+
+[node name="Gun" type="Node2D" unique_id=369018230]
+script = ExtResource("1_i80m3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=993824024]
+rotation = -1.5707964
+texture = ExtResource("2_thmnc")
+
+[node name="Projectile" type="ColorRect" parent="." unique_id=2062095933]
+offset_left = -1.0
+offset_top = -400.0
+offset_right = 1.0
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(1, 0)
+color = Color(0.827451, 0.15686275, 0.21176471, 1)
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=2008310538]
+target_position = Vector2(0, -1000)

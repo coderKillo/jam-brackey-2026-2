@@ -4,6 +4,7 @@ extends OverlaidMenu
 func _ready():
 	%MainMenu.pressed.connect(_on_main_menu_pressed)
 	%Restart.pressed.connect(_on_restart_pressed)
+	%LeaveLevel.pressed.connect(_on_level_end)
 	%Continue.pressed.connect(_on_continue_pressed)
 
 
@@ -24,3 +25,8 @@ func _on_restart_pressed():
 
 func _on_continue_pressed():
 	close()
+
+
+func _on_level_end():
+	close()
+	Events.level_done.emit(1)

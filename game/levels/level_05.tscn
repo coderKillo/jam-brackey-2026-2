@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bsy4jqvh2jhw3"]
+
+[ext_resource type="PackedScene" uid="uid://dpwxovf7bg0ql" path="res://game/levels/level_base.tscn" id="1_270xk"]
+[ext_resource type="PackedScene" uid="uid://cld5fp16noiv6" path="res://game/dice/dice.tscn" id="2_t88jx"]
+
+[node name="Level5" unique_id=1280246299 instance=ExtResource("1_270xk")]
+corruption_chance = 80
+corrupted_dices = 5
+time_limit = 120.0
+has_shadow = true
+
+[node name="Dice" parent="DiceGroup" parent_id_path=PackedInt32Array(1815678092) index="0" unique_id=149165906 instance=ExtResource("2_t88jx")]
+position = Vector2(86, 85)
+corrupt = true
+
+[node name="Dice2" parent="DiceGroup" parent_id_path=PackedInt32Array(1815678092) index="1" unique_id=1109814175 instance=ExtResource("2_t88jx")]
+position = Vector2(133, 220)
+corrupt = true
+
+[node name="Dice3" parent="DiceGroup" parent_id_path=PackedInt32Array(1815678092) index="2" unique_id=1568092815 instance=ExtResource("2_t88jx")]
+position = Vector2(227, 110)
+
+[node name="Dice4" parent="DiceGroup" parent_id_path=PackedInt32Array(1815678092) index="3" unique_id=918348776 instance=ExtResource("2_t88jx")]
+position = Vector2(321, 190)
+corrupt = true
+
+[node name="Dice5" parent="DiceGroup" parent_id_path=PackedInt32Array(1815678092) index="4" unique_id=924961299 instance=ExtResource("2_t88jx")]
+position = Vector2(410, 98)
+corrupt = true
+
+[node name="Dice6" parent="DiceGroup" parent_id_path=PackedInt32Array(1815678092) index="5" unique_id=1671991494 instance=ExtResource("2_t88jx")]
+position = Vector2(458, 224)
+
+[node name="Dice7" parent="DiceGroup" parent_id_path=PackedInt32Array(1815678092) index="6" unique_id=416781716 instance=ExtResource("2_t88jx")]
+position = Vector2(535, 132)
+corrupt = true

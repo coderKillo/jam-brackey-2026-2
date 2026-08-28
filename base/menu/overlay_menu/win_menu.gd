@@ -5,8 +5,9 @@ func _ready():
 	%MainMenu.pressed.connect(_on_main_menu_pressed)
 	%Restart.pressed.connect(_on_restart_pressed)
 	%Continue.pressed.connect(_on_continue_pressed)
+	%SubTitle.text = "%s People survived" % GameState.people
 
-	%Continue.visible = GameState.get_current_level() < (SceneManager.level_size() - 1)
+	%Continue.visible = false
 
 
 func _on_main_menu_pressed():

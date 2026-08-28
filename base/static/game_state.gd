@@ -6,6 +6,14 @@ const NO_VERSION_NAME = "0.0.0"
 
 static var current: GameData
 
+static var people: int:
+	set = set_people,
+	get = get_people
+
+static var munition: int:
+	set = set_munition,
+	get = get_munition
+
 
 static func _log_version() -> void:
 	var current_version = ProjectSettings.get_setting("application/config/version", NO_VERSION_NAME)
@@ -30,6 +38,7 @@ static func open() -> void:
 static func save() -> void:
 	if current is GameData:
 		ResourceSaver.save(current, SAVE_STATE_PATH)
+		current.changed.emit()
 
 
 static func reset() -> void:
@@ -39,28 +48,42 @@ static func reset() -> void:
 	save()
 
 
-static func get_level_data(key: int) -> LevelData:
-	if key not in current.level_data:
-		current.level_data[key] = LevelData.new()
-	return current.level_data[key]
-
-
 static func get_version() -> String:
 	return current.version_opened
 
 
-static func get_current_level() -> int:
-	return current.current_level
+static func is_new_game() -> bool:
+	return current.people == Global.START_POPULATION and current.munition <= 0
 
 
-static func get_max_level_reached() -> int:
-	return current.max_level_reached
-
-
-static func set_current_level(level_number: int) -> void:
-	current.max_level_reached = max(level_number, current.max_level_reached)
-	current.current_level = level_number
+static func set_munition(value: int):
+	current.munition = value
 	save()
+	Events.munition_changed.emit()
+
+
+static func get_munition() -> int:
+	return current.munition
+
+
+static func set_people(value: int):
+	current.people = value
+	save()
+	Events.people_changed.emit()
+
+
+static func get_people() -> int:
+	return current.people
+
+
+static func set_building_cleared(index: int):
+	current.buildings_cleared.append(index)
+	save()
+	Events.building_cleared.emit()
+
+
+static func is_building_cleared(index: int) -> bool:
+	return index in current.buildings_cleared
 
 
 static func start_game() -> void:

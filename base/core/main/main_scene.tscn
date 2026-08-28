@@ -2,10 +2,53 @@
 
 [ext_resource type="Theme" uid="uid://4r6b2cnujbph" path="res://assets/gui_assets/waste_no_space.theme" id="1_6lyvc"]
 [ext_resource type="Script" uid="uid://xwkwmj6gqkg7" path="res://base/core/main/main.gd" id="1_awp0h"]
-[ext_resource type="PackedScene" uid="uid://8wi501ydmfrx" path="res://base/gui/crt_effect.tscn" id="2_h8xxh"]
-[ext_resource type="PackedScene" uid="uid://7eh1kmaickso" path="res://game/levels/level1.tscn" id="2_qe2dj"]
+[ext_resource type="Script" uid="uid://sh7wqc6rqi63" path="res://game/town/town.gd" id="3_dn4rf"]
+[ext_resource type="PackedScene" uid="uid://bqdetpjni1epp" path="res://game/town/building.tscn" id="4_ociif"]
+[ext_resource type="Script" uid="uid://cxv70wg3ahm0y" path="res://base/2d/camera/camera_2d.gd" id="5_3p8nd"]
+[ext_resource type="Texture2D" uid="uid://bmbk6qby1q4qx" path="res://assets/gui/arrow.png" id="5_bicih"]
 [ext_resource type="Script" uid="uid://cwke7gf74johg" path="res://base/2d/effects/popup_text_controller.gd" id="5_ma400"]
+[ext_resource type="Texture2D" uid="uid://cvvdpg02cltma" path="res://assets/placeholders/shell.png" id="6_6icyu"]
 [ext_resource type="PackedScene" uid="uid://dh458ajt0gw1j" path="res://base/2d/effects/popup_text.tscn" id="6_ociif"]
+[ext_resource type="Script" uid="uid://ccheugkv4l4q6" path="res://game/gui/munition_gui.gd" id="6_ugwa6"]
+[ext_resource type="Texture2D" uid="uid://dcgwl1lswhpjv" path="res://assets/placeholders/people.png" id="7_ugwa6"]
+[ext_resource type="Script" uid="uid://ddgxm1ahjhpjl" path="res://game/gui/people_gui.gd" id="7_x0q8c"]
+
+[sub_resource type="Animation" id="Animation_bicih"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset_transform_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w3pcb"]
+resource_name = "move_sign"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset_transform_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.53333336, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-20, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cyqf4"]
+_data = {
+&"RESET": SubResource("Animation_bicih"),
+&"move_sign": SubResource("Animation_w3pcb")
+}
 
 [node name="MainScene" type="Control" unique_id=1643110070 node_paths=PackedStringArray("level_container", "gui")]
 layout_mode = 3
@@ -19,10 +62,168 @@ theme = ExtResource("1_6lyvc")
 script = ExtResource("1_awp0h")
 level_container = NodePath("World")
 gui = NodePath("CanvasLayer/Gui")
-debug_level = ExtResource("2_qe2dj")
+
+[node name="Background" type="ColorRect" parent="." unique_id=740786808]
+layout_mode = 0
+offset_left = -41.0
+offset_top = -15.0
+offset_right = 679.0
+offset_bottom = 385.0
+color = Color(0.039215688, 0.1254902, 0.18431373, 1)
+metadata/_edit_lock_ = true
 
 [node name="World" type="Node2D" parent="." unique_id=91954414]
-position = Vector2(430, 175)
+metadata/_edit_lock_ = true
+
+[node name="Town" type="Control" parent="World" unique_id=62854770]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 360.0
+mouse_filter = 2
+theme = ExtResource("1_6lyvc")
+script = ExtResource("3_dn4rf")
+metadata/_edit_lock_ = true
+
+[node name="Building1" parent="World/Town" unique_id=1224040939 instance=ExtResource("4_ociif")]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 93.0
+offset_right = 121.0
+offset_bottom = 193.0
+id = 1
+building_name = "Gatehouse"
+description = "Terror Dice Distinctive feature: 
+Sum of 2 sides equal 7."
+
+[node name="Building2" parent="World/Town" unique_id=1522312254 instance=ExtResource("4_ociif")]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 184.0
+offset_right = 230.0
+offset_bottom = 284.0
+id = 2
+required_munition = 4
+dices = 3
+building_name = "Old House"
+description = "Terror Dice Distinctive feature:
+Sum of 2 sides equal 7.
+
+Location Effect:
+Terror Dice have a 50% chance to look like normal dices.
+Time limit: 120 s"
+
+[node name="Building3" parent="World/Town" unique_id=2069229562 instance=ExtResource("4_ociif")]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 68.0
+offset_right = 288.0
+offset_bottom = 168.0
+id = 3
+required_munition = 5
+dices = 3
+building_name = "abandoned tavern"
+description = "Terror Dice Distinctive feature:
+Sum of 2 sides equal 7.
+
+Location Effect:
+Terror Dice have a 20% chance to look like normal dices.
+Time limit: 45 s"
+
+[node name="Building4" parent="World/Town" unique_id=518959122 instance=ExtResource("4_ociif")]
+layout_mode = 0
+offset_left = 346.0
+offset_top = 78.0
+offset_right = 446.0
+offset_bottom = 178.0
+id = 4
+building_name = "Decrepit hotel"
+description = "Terror Dice Distinctive feature:
+Normal Dices move in one direction (diagonal).
+
+Location Effect:
+Terror Dice only move in light.
+Time limit: 120 s"
+
+[node name="Building5" parent="World/Town" unique_id=569683642 instance=ExtResource("4_ociif")]
+layout_mode = 0
+offset_left = 413.0
+offset_top = 207.0
+offset_right = 513.0
+offset_bottom = 307.0
+id = 5
+required_munition = 7
+dices = 5
+building_name = "Dark Manor"
+description = "Terror Dice Distinctive feature:
+Sum of 2 sides equal 7.
+
+Location Effect:
+Terror Dice only move in light.
+Terror Dice have a 20% chance to look like normal dices.
+Time limit: 120 s"
+
+[node name="Building10" parent="World/Town" unique_id=430048829 instance=ExtResource("4_ociif")]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 123.0
+offset_right = 612.0
+offset_bottom = 223.0
+id = 10
+required_munition = 10
+dices = 8
+building_name = "Town Hall"
+description = "Terror Dice Distinctive feature:
+Sum of 2 sides equal 7.
+
+Location Effect:
+Terror Dice only move in light.
+Terror Dice have a 50% chance to look like normal dices.
+Time limit: 180 s"
+
+[node name="BloodSmith" parent="World/Town" unique_id=746781732 instance=ExtResource("4_ociif")]
+layout_mode = 0
+offset_left = 276.0
+offset_top = 258.0
+offset_right = 376.0
+offset_bottom = 358.0
+required_munition = 0
+dices = 0
+building_name = "Blood Smith"
+description = "sacrifice people to create blood Bullets"
+
+[node name="MunitionRebuy" type="Control" parent="World/Town/BloodSmith" unique_id=198312231]
+anchors_preset = 0
+offset_left = 21.0
+offset_top = 1.0
+offset_right = 61.0
+offset_bottom = 41.0
+offset_transform_enabled = true
+
+[node name="TextureRect2" type="TextureRect" parent="World/Town/BloodSmith/MunitionRebuy" unique_id=378916029]
+layout_mode = 0
+offset_left = -44.0
+offset_top = 39.0
+offset_right = -12.0
+offset_bottom = 71.0
+texture = ExtResource("5_bicih")
+
+[node name="Label" type="Label" parent="World/Town/BloodSmith/MunitionRebuy" unique_id=349349836]
+layout_mode = 0
+offset_left = -202.0
+offset_top = 42.0
+offset_right = 144.0
+offset_bottom = 72.0
+theme_override_font_sizes/font_size = 30
+text = "buy Bullets!"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="World/Town/BloodSmith/MunitionRebuy" unique_id=859230773]
+libraries/ = SubResource("AnimationLibrary_cyqf4")
+autoplay = &"move_sign"
+
+[node name="Camera2D" type="Camera2D" parent="World" unique_id=1211238943]
+position = Vector2(320, 180)
+script = ExtResource("5_3p8nd")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=904130412]
 layer = 2
@@ -34,16 +235,151 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+mouse_filter = 2
 theme = ExtResource("1_6lyvc")
+metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="CanvasLayer/Gui" unique_id=1242773304]
+[node name="Munition" type="Control" parent="CanvasLayer/Gui" unique_id=1729573312]
+anchors_preset = 0
+offset_left = 12.0
+offset_top = 311.0
+offset_right = 52.0
+offset_bottom = 351.0
+mouse_filter = 2
+script = ExtResource("6_ugwa6")
+texture = ExtResource("6_6icyu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Gui/Munition" unique_id=326788264]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+theme_override_constants/separation = -13
+
+[node name="People" type="Control" parent="CanvasLayer/Gui" unique_id=2081293221]
+anchors_preset = 0
+offset_left = 320.0
+offset_top = 24.0
+offset_right = 360.0
+offset_bottom = 64.0
+mouse_filter = 2
+script = ExtResource("7_x0q8c")
+
+[node name="Label" type="Label" parent="CanvasLayer/Gui/People" unique_id=167320041]
 layout_mode = 0
 offset_right = 40.0
-offset_bottom = 23.0
-text = "Healt: 100"
+offset_bottom = 15.0
+theme_override_font_sizes/font_size = 32
+text = "14"
 
-[node name="CRT-Effect" parent="CanvasLayer" unique_id=1628628620 instance=ExtResource("2_h8xxh")]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Gui/People" unique_id=1411921234]
+layout_mode = 0
+offset_left = -33.0
+offset_top = -10.0
+offset_right = 7.0
+offset_bottom = 30.0
+texture = ExtResource("7_ugwa6")
+
+[node name="TutorialOverlay" type="ColorRect" parent="CanvasLayer/Gui" unique_id=1079369825]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.039215688, 0.1254902, 0.18431373, 1)
+
+[node name="TutorialText" type="RichTextLabel" parent="CanvasLayer/Gui/TutorialOverlay" unique_id=1453589322]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6lyvc")
+bbcode_enabled = true
+text = "Welcome Hunter!
+This town needs help dealing with these annoying [shake]terror dices[/shake].
+
+
+
+
+press [space] to continue"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters_behavior = 1
+
+[node name="TutorialText2" type="RichTextLabel" parent="CanvasLayer/Gui/TutorialOverlay" unique_id=139249464]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6lyvc")
+bbcode_enabled = true
+text = "As you know, these are [shake]barely distinguishable[/shake]
+from their harmless counterparts.
+That is why they require the experienced eye of a hunter.
+
+
+
+
+press [space] to continue"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters_behavior = 1
+
+[node name="TutorialText3" type="RichTextLabel" parent="CanvasLayer/Gui/TutorialOverlay" unique_id=731313190]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6lyvc")
+bbcode_enabled = true
+text = "These pesky critters can only be killed with [shake]blood bullets[/shake].
+That does require some [shake]sacrifices[/shake], 
+but it's a small price to pay.
+
+Good Luck !
+
+
+
+press [space] to continue"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters_behavior = 1
 
 [node name="Controller" type="Node" parent="." unique_id=844771318]
 

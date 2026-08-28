@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cld5fp16noiv6"]
+
+[ext_resource type="Script" uid="uid://chc1gbvhaaqjk" path="res://game/dice/dice.gd" id="1_3qvf1"]
+[ext_resource type="PackedScene" uid="uid://38plq8uud3yk" path="res://game/dice/side.tscn" id="2_4lw1o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c3t6r"]
+size = Vector2(43, 44)
+
+[node name="Dice" type="Area2D" unique_id=149165906]
+script = ExtResource("1_3qvf1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1266526226]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_c3t6r")
+
+[node name="Side1" parent="." unique_id=421317403 instance=ExtResource("2_4lw1o")]
+position = Vector2(-12.215389, 7)
+rotation = -2.0943952
+
+[node name="Side2" parent="." unique_id=1109566900 instance=ExtResource("2_4lw1o")]
+position = Vector2(-0.21538925, -14)
+
+[node name="Side3" parent="." unique_id=958753902 instance=ExtResource("2_4lw1o")]
+position = Vector2(11.784611, 7)
+rotation = 2.0943952

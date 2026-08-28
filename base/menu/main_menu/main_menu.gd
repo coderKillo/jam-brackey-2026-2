@@ -4,8 +4,8 @@ var sub_menu: Control
 
 
 func _ready():
-	%Continue.visible = GameState.get_max_level_reached() > 0
-	%LevelSelect.visible = GameState.get_max_level_reached() > 0
+	%Continue.visible = not GameState.is_new_game()
+	%LevelSelect.visible = not GameState.is_new_game()
 	%Back.visible = false
 
 	%Continue.pressed.connect(_on_continue_pressed)
@@ -37,11 +37,11 @@ func _on_back_pressed():
 
 
 func _on_continue_pressed():
-	SceneManager.load_level(GameState.get_current_level())
+	SceneManager.load_game_scene()
 
 
 func _on_new_game_pressed():
-	if GameState.get_max_level_reached() >= 0:
+	if not GameState.is_new_game():
 		$ConfimNewGame.popup_centered()
 	else:
 		_on_new_game_confirmed()
@@ -49,7 +49,7 @@ func _on_new_game_pressed():
 
 func _on_new_game_confirmed():
 	GameState.reset()
-	SceneManager.load_level(GameState.get_current_level())
+	SceneManager.load_game_scene()
 
 
 func _on_level_select_pressed():

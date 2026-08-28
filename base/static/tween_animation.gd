@@ -59,6 +59,21 @@ static func create_fade_in_out_tween(node: CanvasItem, fade_in: float, fade_out:
 	return tween
 
 
+static func make_fade_out(node: CanvasItem, time: float) -> void:
+	var tween = node.create_tween()
+	(
+		tween
+		. tween_property(
+			node,
+			"modulate:a",
+			0.0,
+			time,
+		)
+	)
+	await tween.finished
+	node.modulate.a = 1.0
+
+
 static func create_wiggle_tween(node: Control, offset: float) -> Tween:
 	var current_position = node.position
 	var tween = node.get_tree().create_tween()

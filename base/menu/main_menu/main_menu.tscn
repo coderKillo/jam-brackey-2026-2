@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://c176p1imvld44" path="res://base/menu/main_menu/option_menu.gd" id="2_byskk"]
 [ext_resource type="Script" uid="uid://mhomivb5vuru" path="res://base/menu/main_menu/level_select.gd" id="3_luyhs"]
 [ext_resource type="PackedScene" uid="uid://cub5ixau0orgh" path="res://base/menu/common/animated_button.tscn" id="3_rk3xn"]
-[ext_resource type="PackedScene" uid="uid://8wi501ydmfrx" path="res://base/gui/crt_effect.tscn" id="6_xq2ug"]
 
 [node name="MainMenu" type="Control" unique_id=1977275918]
 layout_mode = 3
@@ -16,6 +15,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_lue4o")
 script = ExtResource("1_1jjd6")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1873669017]
+layout_mode = 0
+offset_left = -41.0
+offset_top = -15.0
+offset_right = 679.0
+offset_bottom = 385.0
+color = Color(0.039215688, 0.1254902, 0.18431373, 1)
+metadata/_edit_lock_ = true
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=2106969971]
 
@@ -47,7 +55,7 @@ offset_bottom = 97.0
 grow_horizontal = 2
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
-text = "[wave] Game Name [/wave]"
+text = "[wave] Terror DICE [/wave]"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -310,6 +318,3 @@ title = "New Game"
 position = Vector2i(0, 36)
 size = Vector2i(418, 100)
 dialog_text = "Starting a new game will reset all game data."
-
-[node name="CRT-Effect" parent="." unique_id=383198665 instance=ExtResource("6_xq2ug")]
-layout_mode = 1

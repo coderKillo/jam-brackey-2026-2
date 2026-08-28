@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://by632jqo48fbs"]
+[gd_scene format=3 uid="uid://by632jqo48fbs"]
 
 [ext_resource type="Theme" uid="uid://4r6b2cnujbph" path="res://assets/gui_assets/waste_no_space.theme" id="1_nxcle"]
 [ext_resource type="Script" uid="uid://bui4ncqhtuy1p" path="res://base/menu/overlay_menu/win_menu.gd" id="1_to7dx"]
 [ext_resource type="PackedScene" uid="uid://cub5ixau0orgh" path="res://base/menu/common/animated_button.tscn" id="3_usvka"]
 
-[node name="WinMenu" type="Control"]
+[node name="WinMenu" type="Control" unique_id=970295290]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -15,17 +15,17 @@ grow_vertical = 2
 theme = ExtResource("1_nxcle")
 script = ExtResource("1_to7dx")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1363417213]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.117647)
+color = Color(0, 0, 0, 0.69411767)
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 2
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1721056867]
+layout_mode = 0
 offset_left = 320.0
 offset_top = 180.0
 offset_right = 320.0
@@ -33,52 +33,58 @@ offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=156161528]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=93768061]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=1169501562]
 layout_mode = 2
+theme_override_constants/separation = 20
 
-[node name="Label" type="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=657329589]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "[wave]Game Won!"
+text = "[wave]Town cleansed!"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="SubTitle" type="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2103231110]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-text = "
-
+theme_override_font_sizes/normal_font_size = 32
+text = "50 people survived!
 "
 fit_content = true
+horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1095137349]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Restart" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_usvka")]
+[node name="Restart" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1020151948 instance=ExtResource("3_usvka")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
-text = "Restart"
+text = "Another Town"
 
-[node name="Continue" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_usvka")]
+[node name="Continue" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1132665693 instance=ExtResource("3_usvka")]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 text = "Continue"
 
-[node name="MainMenu" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_usvka")]
+[node name="MainMenu" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1453071986 instance=ExtResource("3_usvka")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2

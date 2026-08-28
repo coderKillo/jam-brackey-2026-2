@@ -63,66 +63,28 @@ func load_main_menu():
 
 
 func reload_level():
-	if SINGLE_GAME_SCENE:
-		load_game_scene()
-		return
-
-	load_level(GameState.get_current_level())
+	GameState.reset()
+	load_game_scene()
+	return
 
 
 func advance_level():
-	if SINGLE_GAME_SCENE:
-		load_game_scene()
-		return
-
-	var next_level = GameState.get_current_level() + 1
-	if next_level >= level_size():
-		return
-
-	load_level(next_level)
+	load_game_scene()
+	return
 
 
 func level_size() -> int:
 	return scene_resource.levels.size()
 
 
-func load_level(level: int):
-	if SINGLE_GAME_SCENE:
-		load_game_scene()
-		return
-
-	assert(level < level_size())
-	GameState.set_current_level(level)
-	load_level_scene(scene_resource.levels[level])
+func load_level(_level: int):
+	load_game_scene()
+	return
 
 
-func load_level_scene(level_scene: PackedScene):
-	if SINGLE_GAME_SCENE:
-		load_game_scene()
-		return
-
-	if _in_transition:
-		return
-
-	_in_transition = true
-	await _do_transition(true)
-
-	if not is_instance_valid(main):
-		load_game_scene()
-
-	if is_instance_valid(current_level):
-		current_level.queue_free()
-		current_level = null
-
-	current_level = level_scene.instantiate()
-
-	if is_instance_valid(main.level_container):
-		main.level_container.call_deferred("add_child", current_level)
-	else:
-		main.call_deferred("add_child", current_level)
-
-	await _do_transition(false)
-	_in_transition = false
+func load_level_scene(_level_scene: PackedScene):
+	load_game_scene()
+	return
 
 
 func _on_game_won():
