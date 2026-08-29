@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://c176p1imvld44" path="res://base/menu/main_menu/option_menu.gd" id="2_byskk"]
 [ext_resource type="Script" uid="uid://mhomivb5vuru" path="res://base/menu/main_menu/level_select.gd" id="3_luyhs"]
 [ext_resource type="PackedScene" uid="uid://cub5ixau0orgh" path="res://base/menu/common/animated_button.tscn" id="3_rk3xn"]
+[ext_resource type="AudioStream" uid="uid://b7hoi0a628c37" path="res://assets/music/void_estate.ogg" id="3_xq2ug"]
 
 [node name="MainMenu" type="Control" unique_id=1977275918]
 layout_mode = 3
@@ -26,6 +27,9 @@ color = Color(0.039215688, 0.1254902, 0.18431373, 1)
 metadata/_edit_lock_ = true
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=2106969971]
+stream = ExtResource("3_xq2ug")
+autoplay = true
+bus = &"Music"
 
 [node name="Menu" type="Control" parent="." unique_id=284743609]
 layout_mode = 1

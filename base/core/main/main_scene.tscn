@@ -6,12 +6,34 @@
 [ext_resource type="PackedScene" uid="uid://bqdetpjni1epp" path="res://game/town/building.tscn" id="4_ociif"]
 [ext_resource type="Script" uid="uid://cxv70wg3ahm0y" path="res://base/2d/camera/camera_2d.gd" id="5_3p8nd"]
 [ext_resource type="Texture2D" uid="uid://bmbk6qby1q4qx" path="res://assets/gui/arrow.png" id="5_bicih"]
+[ext_resource type="Shader" uid="uid://3csscbyp2lf6" path="res://game/town/building.gdshader" id="5_es3kw"]
 [ext_resource type="Script" uid="uid://cwke7gf74johg" path="res://base/2d/effects/popup_text_controller.gd" id="5_ma400"]
 [ext_resource type="Texture2D" uid="uid://cvvdpg02cltma" path="res://assets/placeholders/shell.png" id="6_6icyu"]
 [ext_resource type="PackedScene" uid="uid://dh458ajt0gw1j" path="res://base/2d/effects/popup_text.tscn" id="6_ociif"]
 [ext_resource type="Script" uid="uid://ccheugkv4l4q6" path="res://game/gui/munition_gui.gd" id="6_ugwa6"]
 [ext_resource type="Texture2D" uid="uid://dcgwl1lswhpjv" path="res://assets/placeholders/people.png" id="7_ugwa6"]
 [ext_resource type="Script" uid="uid://ddgxm1ahjhpjl" path="res://game/gui/people_gui.gd" id="7_x0q8c"]
+[ext_resource type="Script" uid="uid://cj7e5u2xmimug" path="res://base/sfx/sound_controller.gd" id="13_gjp0b"]
+[ext_resource type="AudioStream" uid="uid://b7hoi0a628c37" path="res://assets/music/void_estate.ogg" id="13_w3pcb"]
+[ext_resource type="AudioStream" uid="uid://ba4gwp76vucvm" path="res://assets/sfx/sfx_deathscream_human1.wav" id="14_es3kw"]
+[ext_resource type="AudioStream" uid="uid://dj8v6gilpjnf8" path="res://assets/sfx/sfx_deathscream_alien5.wav" id="15_b46tn"]
+[ext_resource type="AudioStream" uid="uid://85eetorihpew" path="res://assets/sfx/sfx_weapon_shotgun1.wav" id="16_l3rmk"]
+[ext_resource type="AudioStream" uid="uid://dfoxljyoeyke" path="res://assets/sfx/sfx_wpn_punch1.wav" id="17_c8pys"]
+[ext_resource type="AudioStream" uid="uid://c3p4e5fqxxiua" path="res://assets/sfx/sfx_menu_move4.wav" id="18_gjp0b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_es3kw"]
+resource_local_to_scene = true
+shader = ExtResource("5_es3kw")
+shader_parameter/color = Color(0.827451, 0.15686275, 0.21176471, 1)
+shader_parameter/threshold = 0.14
+shader_parameter/locked = false
+shader_parameter/replace_color_locked = Color(0.5294118, 0.10980392, 0.24313726, 1)
+shader_parameter/cleared = false
+shader_parameter/replace_color_cleared = Color(0.039215688, 0.1254902, 0.18431373, 1)
+shader_parameter/outline_color = Color(0.827451, 0.15686275, 0.21176471, 1)
+shader_parameter/outline_type = 2
+shader_parameter/outline_thickness = 1.0
+shader_parameter/outline = false
 
 [sub_resource type="Animation" id="Animation_bicih"]
 length = 0.001
@@ -92,6 +114,7 @@ offset_top = 93.0
 offset_right = 121.0
 offset_bottom = 193.0
 id = 1
+building_texture = 3
 building_name = "Gatehouse"
 description = "Terror Dice Distinctive feature: 
 Sum of 2 sides equal 7."
@@ -105,6 +128,7 @@ offset_bottom = 284.0
 id = 2
 required_munition = 4
 dices = 3
+building_texture = 1
 building_name = "Old House"
 description = "Terror Dice Distinctive feature:
 Sum of 2 sides equal 7.
@@ -122,6 +146,7 @@ offset_bottom = 168.0
 id = 3
 required_munition = 5
 dices = 3
+building_texture = 3
 building_name = "abandoned tavern"
 description = "Terror Dice Distinctive feature:
 Sum of 2 sides equal 7.
@@ -137,6 +162,7 @@ offset_top = 78.0
 offset_right = 446.0
 offset_bottom = 178.0
 id = 4
+building_texture = 2
 building_name = "Decrepit hotel"
 description = "Terror Dice Distinctive feature:
 Normal Dices move in one direction (diagonal).
@@ -147,13 +173,14 @@ Time limit: 120 s"
 
 [node name="Building5" parent="World/Town" unique_id=569683642 instance=ExtResource("4_ociif")]
 layout_mode = 0
-offset_left = 413.0
-offset_top = 207.0
-offset_right = 513.0
-offset_bottom = 307.0
+offset_left = 372.0
+offset_top = 210.0
+offset_right = 472.0
+offset_bottom = 310.0
 id = 5
 required_munition = 7
 dices = 5
+building_texture = 5
 building_name = "Dark Manor"
 description = "Terror Dice Distinctive feature:
 Sum of 2 sides equal 7.
@@ -165,13 +192,14 @@ Time limit: 120 s"
 
 [node name="Building10" parent="World/Town" unique_id=430048829 instance=ExtResource("4_ociif")]
 layout_mode = 0
-offset_left = 512.0
-offset_top = 123.0
-offset_right = 612.0
-offset_bottom = 223.0
+offset_left = 495.0
+offset_top = 117.0
+offset_right = 595.0
+offset_bottom = 217.0
 id = 10
 required_munition = 10
 dices = 8
+building_texture = 4
 building_name = "Town Hall"
 description = "Terror Dice Distinctive feature:
 Sum of 2 sides equal 7.
@@ -181,12 +209,15 @@ Terror Dice only move in light.
 Terror Dice have a 50% chance to look like normal dices.
 Time limit: 180 s"
 
+[node name="Sprite2D" parent="World/Town/Building10" index="0" unique_id=1472941203]
+material = SubResource("ShaderMaterial_es3kw")
+
 [node name="BloodSmith" parent="World/Town" unique_id=746781732 instance=ExtResource("4_ociif")]
 layout_mode = 0
-offset_left = 276.0
-offset_top = 258.0
-offset_right = 376.0
-offset_bottom = 358.0
+offset_left = 245.0
+offset_top = 248.0
+offset_right = 345.0
+offset_bottom = 348.0
 required_munition = 0
 dices = 0
 building_name = "Blood Smith"
@@ -387,3 +418,29 @@ visible_characters_behavior = 1
 script = ExtResource("5_ma400")
 level_container = NodePath("../../World")
 damage_number_scene = ExtResource("6_ociif")
+
+[node name="SoundController" type="Node" parent="Controller" unique_id=338652642]
+script = ExtResource("13_gjp0b")
+metadata/_custom_type_script = "uid://cj7e5u2xmimug"
+
+[node name="DeathHuman" type="AudioStreamPlayer" parent="Controller/SoundController" unique_id=1566126685]
+stream = ExtResource("14_es3kw")
+
+[node name="DeathDice" type="AudioStreamPlayer" parent="Controller/SoundController" unique_id=1836214185]
+stream = ExtResource("15_b46tn")
+
+[node name="Shoot" type="AudioStreamPlayer" parent="Controller/SoundController" unique_id=225384988]
+stream = ExtResource("16_l3rmk")
+
+[node name="Slide" type="AudioStreamPlayer" parent="Controller/SoundController" unique_id=42351498]
+stream = ExtResource("17_c8pys")
+
+[node name="Selected" type="AudioStreamPlayer" parent="Controller/SoundController" unique_id=654386784]
+stream = ExtResource("18_gjp0b")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=1781483783]
+stream = ExtResource("13_w3pcb")
+autoplay = true
+bus = &"Music"
+
+[editable path="World/Town/Building10"]

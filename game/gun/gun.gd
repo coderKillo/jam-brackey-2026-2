@@ -6,6 +6,7 @@ signal shooting
 @export var tilt_angle := 45.0
 
 @onready var projectile: ColorRect = $Projectile
+@onready var animation: AnimatedSprite2D = $Sprite2D
 
 
 func _process(delta):
@@ -41,8 +42,12 @@ func shoot():
 
 	shooting.emit()
 	Events.camera_shake.emit(1.0)
+	Events.play_sound.emit(SoundController.SHOOT)
+	animation.play("shoot")
 
-	_fire_projectile()
+	set_process(false)
+	await _fire_projectile()
+	set_process(true)
 
 
 func _fire_projectile():

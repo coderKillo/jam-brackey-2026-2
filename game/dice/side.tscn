@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://yj1hqpkihvgf" path="res://game/dice/side.gd" id="1_1csu0"]
 [ext_resource type="Texture2D" uid="uid://dfnredyr64y3o" path="res://assets/placeholders/side.png" id="1_vk01k"]
-[ext_resource type="Texture2D" uid="uid://b3so2f1bkhixk" path="res://assets/placeholders/eye.png" id="3_3inbt"]
+[ext_resource type="Texture2D" uid="uid://q0dpm1tl5b0f" path="res://assets/placeholders/eye-sheet.png" id="3_vk01k"]
 
 [node name="Side" type="Sprite2D" unique_id=421317403]
 texture = ExtResource("1_vk01k")
@@ -11,25 +11,37 @@ script = ExtResource("1_1csu0")
 [node name="Eyes" type="Node2D" parent="." unique_id=951852886]
 
 [node name="Eye1" type="Sprite2D" parent="Eyes" unique_id=76763270]
-position = Vector2(0, -7)
-texture = ExtResource("3_3inbt")
+position = Vector2(-13, -1)
+texture = ExtResource("3_vk01k")
+hframes = 6
+frame = 4
 
 [node name="Eye2" type="Sprite2D" parent="Eyes" unique_id=1812015186]
-position = Vector2(8, -4)
-texture = ExtResource("3_3inbt")
+position = Vector2(-5, -6)
+texture = ExtResource("3_vk01k")
+hframes = 6
+frame = 4
 
 [node name="Eye3" type="Sprite2D" parent="Eyes" unique_id=1165228399]
-position = Vector2(14, 0)
-texture = ExtResource("3_3inbt")
+position = Vector2(3, -8)
+texture = ExtResource("3_vk01k")
+hframes = 6
+frame = 4
 
 [node name="Eye4" type="Sprite2D" parent="Eyes" unique_id=760545310]
-position = Vector2(-12, -1)
-texture = ExtResource("3_3inbt")
+position = Vector2(-1, 5)
+texture = ExtResource("3_vk01k")
+hframes = 6
+frame = 4
 
 [node name="Eye5" type="Sprite2D" parent="Eyes" unique_id=4236300]
-position = Vector2(-4, 1)
-texture = ExtResource("3_3inbt")
+position = Vector2(4, 1)
+texture = ExtResource("3_vk01k")
+hframes = 6
+frame = 4
 
 [node name="Eye6" type="Sprite2D" parent="Eyes" unique_id=56170347]
-position = Vector2(0, 6)
-texture = ExtResource("3_3inbt")
+position = Vector2(12, -3)
+texture = ExtResource("3_vk01k")
+hframes = 6
+frame = 4

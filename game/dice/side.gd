@@ -13,11 +13,25 @@ var _lookup = {
 	6: [1, 1, 1, 1, 1, 1],
 }
 
+var _timer := 0.0
+
 
 func _ready():
 	for eye in $Eyes.get_children():
 		eyes.append(eye)
 	set_number(randi_range(1, 6))
+
+
+func _process(delta):
+	if _timer > 0.0:
+		_timer -= delta
+		return
+
+	_timer = 1.0
+	for eye in eyes:
+		if randf() > 0.90:
+			continue
+		eye.frame = randi_range(0, 4)
 
 
 func set_number(number: int):

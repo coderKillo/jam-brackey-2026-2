@@ -33,12 +33,11 @@ func move(direction: Vector2):
 	)
 	(
 		tween
-		. tween_property(self, "rotation_degrees", 120.0 * direction.x, 0.5)
+		. tween_property(self, "rotation_degrees", rotation_degrees + 120.0 * direction.x, 0.5)
 		. set_ease(Tween.EASE_OUT)
 		. set_trans(Tween.TRANS_EXPO)
 	)
 	await tween.finished
-	rotation_degrees = 0.0
 
 
 func close():
@@ -55,6 +54,7 @@ func open():
 
 func kill():
 	queue_free()
+	Events.play_sound.emit(SoundController.DEATH_DICE)
 	Events.dice_killed.emit(self)
 
 

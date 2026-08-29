@@ -89,6 +89,8 @@ func _process_dice(dice: Dice):
 			direction.x *= -1
 		else:
 			direction.y *= -1
+
+	Events.play_sound.emit(SoundController.SLIDE)
 	await dice.move(direction)
 
 	var is_corrupt = dice.corrupt and (randf() < (corruption_chance / 100.0))
@@ -106,6 +108,7 @@ func end_level():
 			await _tweeth_animation(dice.global_position)
 			GameState.people -= 1
 			Events.camera_shake.emit(0.3)
+			Events.play_sound.emit(SoundController.DEATH_HUMAN)
 
 	Events.level_done.emit(_corrupted_size())
 

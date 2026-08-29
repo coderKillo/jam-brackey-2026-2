@@ -1,9 +1,15 @@
 class_name SoundController
 extends Node
 
-enum { EMPTY }
+enum { DEATH_HUMAN, DEATH_DICE, SHOOT, SLIDE, SELECTED }
 
-@onready var sounds = {}
+@onready var sounds = {
+	DEATH_HUMAN: $DeathHuman,
+	DEATH_DICE: $DeathDice,
+	SHOOT: $Shoot,
+	SLIDE: $Slide,
+	SELECTED: $Selected
+}
 
 
 func _ready():

@@ -5,18 +5,18 @@
 [ext_resource type="Shader" uid="uid://3csscbyp2lf6" path="res://game/town/building.gdshader" id="2_tj204"]
 [ext_resource type="Theme" uid="uid://4r6b2cnujbph" path="res://assets/gui_assets/waste_no_space.theme" id="4_tj204"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6gge6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tj204"]
 resource_local_to_scene = true
 shader = ExtResource("2_tj204")
 shader_parameter/color = Color(0.827451, 0.15686275, 0.21176471, 1)
-shader_parameter/threshold = 0.1
+shader_parameter/threshold = 0.14
 shader_parameter/locked = false
 shader_parameter/replace_color_locked = Color(0.5294118, 0.10980392, 0.24313726, 1)
 shader_parameter/cleared = false
 shader_parameter/replace_color_cleared = Color(0.039215688, 0.1254902, 0.18431373, 1)
 shader_parameter/outline_color = Color(0.827451, 0.15686275, 0.21176471, 1)
 shader_parameter/outline_type = 2
-shader_parameter/outline_thickness = 2.0
+shader_parameter/outline_thickness = 1.0
 shader_parameter/outline = false
 
 [node name="Building" type="Button" unique_id=1224040939]
@@ -27,16 +27,12 @@ theme = ExtResource("4_tj204")
 text = "Building"
 script = ExtResource("1_hluyw")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=244218700]
-material = SubResource("ShaderMaterial_6gge6")
-layout_mode = 0
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 108.0
-offset_bottom = 108.0
-pivot_offset_ratio = Vector2(0.5, 0.5)
-mouse_filter = 2
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1472941203]
+material = SubResource("ShaderMaterial_tj204")
+position = Vector2(45, 43)
 texture = ExtResource("2_6gge6")
+hframes = 3
+vframes = 2
 
 [node name="ToolTip" type="PanelContainer" parent="." unique_id=1305419872]
 visible = false
@@ -72,16 +68,22 @@ fit_content = true
 visible = false
 z_index = 3
 anchors_preset = 0
-offset_left = -3.0
-offset_top = -77.0
-offset_right = 37.0
-offset_bottom = -37.0
+offset_left = -24.0
+offset_top = -53.0
+offset_right = 16.0
+offset_bottom = -13.0
 offset_transform_enabled = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Requirement" unique_id=904742975]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Label" type="Label" parent="Requirement" unique_id=1782922029]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 15.0
+offset_left = 40.0
+offset_right = 262.0
+offset_bottom = 19.0
 theme_override_colors/font_outline_color = Color(0.1882353, 0.1764706, 0.41568628, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 20
@@ -89,8 +91,10 @@ text = "Require:"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Requirement" unique_id=1826344323]
 layout_mode = 0
-offset_top = 15.0
-offset_right = 108.0
-offset_bottom = 47.0
+offset_left = -36.0
+offset_top = 20.0
+offset_right = 167.0
+offset_bottom = 52.0
 mouse_filter = 2
 theme_override_constants/separation = -13
+alignment = 1

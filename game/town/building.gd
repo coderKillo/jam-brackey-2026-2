@@ -4,6 +4,7 @@ extends Button
 @export var id := 0
 @export var required_munition := 3
 @export var dices := 2
+@export var building_texture := 0
 @export var building_name := "Building"
 @export_multiline var description := "Building"
 
@@ -11,7 +12,7 @@ extends Button
 @onready var _toolbox_label: RichTextLabel = $ToolTip/MarginContainer/RichTextLabel
 @onready var _requirement: Control = $Requirement
 
-@onready var _texture: TextureRect = $TextureRect
+@onready var _texture: Sprite2D = $Sprite2D
 
 var _locked := false
 var _cleared := false
@@ -26,6 +27,8 @@ func _ready():
 
 	_toolbox.hide()
 	_requirement.hide()
+
+	_texture.frame = building_texture
 
 	_set_toolbox_text()
 	_set_toolbox_position()
@@ -45,12 +48,14 @@ func _on_munition_changed():
 
 func _on_building_cleared():
 	if GameState.is_building_cleared(id):
+		print(id)
 		_cleared = true
-		_texture.material.set_shader_parameter("cleared", _locked)
+		_texture.material.set_shader_parameter("cleared", _cleared)
 		disabled = true
 
 
 func _mouse_entered():
+	Events.play_sound.emit(SoundController.SELECTED)
 	_texture.material.set_shader_parameter("outline", true)
 	_texture.scale = Vector2(1.2, 1.2)
 	if _cleared:

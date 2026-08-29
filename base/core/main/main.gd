@@ -43,6 +43,7 @@ func _sacrifice_people():
 	GameState.munition += 1
 	GameState.people -= 1
 	Events.camera_shake.emit(0.3)
+	Events.play_sound.emit(SoundController.DEATH_HUMAN)
 
 
 func _load_level(id):
