@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://4r6b2cnujbph" path="res://assets/gui_assets/waste_no_space.theme" id="1_6lyvc"]
 [ext_resource type="Script" uid="uid://xwkwmj6gqkg7" path="res://base/core/main/main.gd" id="1_awp0h"]
+[ext_resource type="Texture2D" uid="uid://dg0r6o405r73t" path="res://assets/placeholders/background.png" id="3_b46tn"]
 [ext_resource type="Script" uid="uid://sh7wqc6rqi63" path="res://game/town/town.gd" id="3_dn4rf"]
 [ext_resource type="PackedScene" uid="uid://bqdetpjni1epp" path="res://game/town/building.tscn" id="4_ociif"]
 [ext_resource type="Script" uid="uid://cxv70wg3ahm0y" path="res://base/2d/camera/camera_2d.gd" id="5_3p8nd"]
@@ -13,6 +14,7 @@
 [ext_resource type="Script" uid="uid://ccheugkv4l4q6" path="res://game/gui/munition_gui.gd" id="6_ugwa6"]
 [ext_resource type="Texture2D" uid="uid://dcgwl1lswhpjv" path="res://assets/placeholders/people.png" id="7_ugwa6"]
 [ext_resource type="Script" uid="uid://ddgxm1ahjhpjl" path="res://game/gui/people_gui.gd" id="7_x0q8c"]
+[ext_resource type="Script" uid="uid://by6srqjfrbqvh" path="res://game/town/could_group.gd" id="9_eb0yd"]
 [ext_resource type="Script" uid="uid://cj7e5u2xmimug" path="res://base/sfx/sound_controller.gd" id="13_gjp0b"]
 [ext_resource type="AudioStream" uid="uid://b7hoi0a628c37" path="res://assets/music/void_estate.ogg" id="13_w3pcb"]
 [ext_resource type="AudioStream" uid="uid://ba4gwp76vucvm" path="res://assets/sfx/sfx_deathscream_human1.wav" id="14_es3kw"]
@@ -20,8 +22,10 @@
 [ext_resource type="AudioStream" uid="uid://85eetorihpew" path="res://assets/sfx/sfx_weapon_shotgun1.wav" id="16_l3rmk"]
 [ext_resource type="AudioStream" uid="uid://dfoxljyoeyke" path="res://assets/sfx/sfx_wpn_punch1.wav" id="17_c8pys"]
 [ext_resource type="AudioStream" uid="uid://c3p4e5fqxxiua" path="res://assets/sfx/sfx_menu_move4.wav" id="18_gjp0b"]
+[ext_resource type="Script" uid="uid://c0w25vgki6ng0" path="res://game/animation/clouds.gd" id="22_c8pys"]
+[ext_resource type="Texture2D" uid="uid://8b4ax3dt0sg" path="res://assets/enviroment/Cloudes-spreatsheet.png" id="22_l3rmk"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_es3kw"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c8pys"]
 resource_local_to_scene = true
 shader = ExtResource("5_es3kw")
 shader_parameter/color = Color(0.827451, 0.15686275, 0.21176471, 1)
@@ -72,6 +76,8 @@ _data = {
 &"move_sign": SubResource("Animation_w3pcb")
 }
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c3t6r"]
+
 [node name="MainScene" type="Control" unique_id=1643110070 node_paths=PackedStringArray("level_container", "gui")]
 layout_mode = 3
 anchors_preset = 15
@@ -85,7 +91,7 @@ script = ExtResource("1_awp0h")
 level_container = NodePath("World")
 gui = NodePath("CanvasLayer/Gui")
 
-[node name="Background" type="ColorRect" parent="." unique_id=740786808]
+[node name="BackgroundColor" type="ColorRect" parent="." unique_id=740786808]
 layout_mode = 0
 offset_left = -41.0
 offset_top = -15.0
@@ -93,6 +99,12 @@ offset_right = 679.0
 offset_bottom = 385.0
 color = Color(0.039215688, 0.1254902, 0.18431373, 1)
 metadata/_edit_lock_ = true
+
+[node name="Background" type="TextureRect" parent="." unique_id=899304804]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_b46tn")
 
 [node name="World" type="Node2D" parent="." unique_id=91954414]
 metadata/_edit_lock_ = true
@@ -210,7 +222,7 @@ Terror Dice have a 50% chance to look like normal dices.
 Time limit: 180 s"
 
 [node name="Sprite2D" parent="World/Town/Building10" index="0" unique_id=1472941203]
-material = SubResource("ShaderMaterial_es3kw")
+material = SubResource("ShaderMaterial_c8pys")
 
 [node name="BloodSmith" parent="World/Town" unique_id=746781732 instance=ExtResource("4_ociif")]
 layout_mode = 0
@@ -224,6 +236,7 @@ building_name = "Blood Smith"
 description = "sacrifice people to create blood Bullets"
 
 [node name="MunitionRebuy" type="Control" parent="World/Town/BloodSmith" unique_id=198312231]
+z_index = 1
 anchors_preset = 0
 offset_left = 21.0
 offset_top = 1.0
@@ -255,6 +268,204 @@ autoplay = &"move_sign"
 [node name="Camera2D" type="Camera2D" parent="World" unique_id=1211238943]
 position = Vector2(320, 180)
 script = ExtResource("5_3p8nd")
+
+[node name="CouldGroup" type="Node2D" parent="World" unique_id=429120088 node_paths=PackedStringArray("cloud1", "cloud2", "cloud3")]
+script = ExtResource("9_eb0yd")
+cloud1 = NodePath("Clouds1")
+cloud2 = NodePath("Clouds2")
+cloud3 = NodePath("Clouds3")
+
+[node name="CloudsBottom" type="CanvasGroup" parent="World/CouldGroup" unique_id=1764460139]
+modulate = Color(1, 1, 1, 0.90588236)
+position = Vector2(76, 339)
+script = ExtResource("22_c8pys")
+distance = 20.0
+amplitude = -10.0
+time = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="World/CouldGroup/CloudsBottom" unique_id=778943074]
+material = SubResource("CanvasItemMaterial_c3t6r")
+position = Vector2(-47, 22)
+texture = ExtResource("22_l3rmk")
+hframes = 5
+
+[node name="Sprite2D3" type="Sprite2D" parent="World/CouldGroup/CloudsBottom" unique_id=1403786823]
+material = SubResource("CanvasItemMaterial_c3t6r")
+position = Vector2(171, 22)
+texture = ExtResource("22_l3rmk")
+hframes = 5
+frame = 4
+
+[node name="Sprite2D4" type="Sprite2D" parent="World/CouldGroup/CloudsBottom" unique_id=1998026835]
+material = SubResource("CanvasItemMaterial_c3t6r")
+position = Vector2(413, 21)
+texture = ExtResource("22_l3rmk")
+hframes = 5
+frame = 1
+
+[node name="Sprite2D5" type="Sprite2D" parent="World/CouldGroup/CloudsBottom" unique_id=1228204009]
+material = SubResource("CanvasItemMaterial_c3t6r")
+position = Vector2(346, 34)
+texture = ExtResource("22_l3rmk")
+hframes = 5
+frame = 3
+
+[node name="Sprite2D6" type="Sprite2D" parent="World/CouldGroup/CloudsBottom" unique_id=1254968843]
+material = SubResource("CanvasItemMaterial_c3t6r")
+position = Vector2(513, 12)
+texture = ExtResource("22_l3rmk")
+hframes = 5
+frame = 2
+
+[node name="Sprite2D2" type="Sprite2D" parent="World/CouldGroup/CloudsBottom" unique_id=2037215253]
+position = Vector2(44, 6)
+texture = ExtResource("22_l3rmk")
+hframes = 5
+frame = 2
+
+[node name="Clouds1" type="CanvasGroup" parent="World/CouldGroup" unique_id=2144916270]
+modulate = Color(1, 1, 1, 0.90588236)
+position = Vector2(255, 94)
+script = ExtResource("22_c8pys")
+distance = 20.0
+amplitude = -10.0
+time = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="World/CouldGroup/Clouds1" unique_id=622565091]
+material = SubResource("CanvasItemMaterial_c3t6r")
+position = Vector2(16, 25)
+texture = ExtResource("22_l3rmk")
+hframes = 5
+
+[node name="Sprite2D3" type="Sprite2D" parent="World/CouldGroup/Clouds1" unique_id=755317142]
+material = SubResource("CanvasItemMaterial_c3t6r")
+position = Vector2(-13, 58)
+texture = ExtResource("22_l3rmk")
+hframes = 5
+frame = 4
+
+[node name="Sprite2D4" type="Sprite2D" parent="World/CouldGroup/Clouds1" unique_id=1303227310]
+material = SubResource("CanvasItemMaterial_c3t6r")
+position = Vector2(45, 93)
+texture = ExtResource("22_l3rmk")
+hframes = 5
+frame = 1
+
+[node name="Sprite2D5" type="Sprite2D" parent="World/CouldGroup/Clouds1" unique_id=1112813528]
+material = SubResource("CanvasItemMaterial_c3t6r")
+position = Vector2(-69, 91)
+texture = ExtResource("22_l3rmk")
+hframes = 5
+frame = 3
+
+[node name="Sprite2D6" type="Sprite2D" parent="World/CouldGroup/Clouds1" unique_id=1102313823]
+material = SubResource("CanvasItemMaterial_c3t6r")
+position = Vector2(-40, 134)
+texture = ExtResource("22_l3rmk")
+hframes = 5
+frame = 2
+
+[node name="Sprite2D2" type="Sprite2D" parent="World/CouldGroup/Clouds1" unique_id=686046288]
+position = Vector2(-70, 173)
+texture = ExtResource("22_l3rmk")
+hframes = 5
+frame = 2
+
+[node name="Clouds2" type="CanvasGroup" parent="World/CouldGroup" unique_id=1815960348]
+modulate = Color(1, 1, 1, 0.90588236)
+position = Vector2(424, 118)
+script = ExtResource("22_c8pys")
+distance = 20.0
+amplitude = -10.0
+time = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="World/CouldGroup/Clouds2" unique_id=916665637]
+material = SubResource("CanvasItemMaterial_c3t6r")
+position = Vector2(-8, 6)
+texture = ExtResource("22_l3rmk")
+hframes = 5
+
+[node name="Sprite2D3" type="Sprite2D" parent="World/CouldGroup/Clouds2" unique_id=499654224]
+material = SubResource("CanvasItemMaterial_c3t6r")
+position = Vector2(-25, 38)
+texture = ExtResource("22_l3rmk")
+hframes = 5
+frame = 4
+
+[node name="Sprite2D4" type="Sprite2D" parent="World/CouldGroup/Clouds2" unique_id=1855559105]
+material = SubResource("CanvasItemMaterial_c3t6r")
+position = Vector2(6, 89)
+texture = ExtResource("22_l3rmk")
+hframes = 5
+frame = 1
+
+[node name="Sprite2D5" type="Sprite2D" parent="World/CouldGroup/Clouds2" unique_id=463306707]
+material = SubResource("CanvasItemMaterial_c3t6r")
+position = Vector2(-46, 119)
+texture = ExtResource("22_l3rmk")
+hframes = 5
+frame = 3
+
+[node name="Sprite2D6" type="Sprite2D" parent="World/CouldGroup/Clouds2" unique_id=545024893]
+material = SubResource("CanvasItemMaterial_c3t6r")
+position = Vector2(16, 154)
+texture = ExtResource("22_l3rmk")
+hframes = 5
+frame = 2
+
+[node name="Sprite2D2" type="Sprite2D" parent="World/CouldGroup/Clouds2" unique_id=1836895670]
+position = Vector2(4, 185)
+texture = ExtResource("22_l3rmk")
+hframes = 5
+frame = 2
+
+[node name="Clouds3" type="CanvasGroup" parent="World/CouldGroup" unique_id=200490411]
+modulate = Color(1, 1, 1, 0.90588236)
+position = Vector2(599, 79)
+script = ExtResource("22_c8pys")
+distance = 20.0
+amplitude = -10.0
+time = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="World/CouldGroup/Clouds3" unique_id=1381985819]
+material = SubResource("CanvasItemMaterial_c3t6r")
+position = Vector2(2, 16)
+texture = ExtResource("22_l3rmk")
+hframes = 5
+
+[node name="Sprite2D3" type="Sprite2D" parent="World/CouldGroup/Clouds3" unique_id=1567317605]
+material = SubResource("CanvasItemMaterial_c3t6r")
+position = Vector2(-53, 46)
+texture = ExtResource("22_l3rmk")
+hframes = 5
+frame = 4
+
+[node name="Sprite2D4" type="Sprite2D" parent="World/CouldGroup/Clouds3" unique_id=231457144]
+material = SubResource("CanvasItemMaterial_c3t6r")
+position = Vector2(7, 82)
+texture = ExtResource("22_l3rmk")
+hframes = 5
+frame = 1
+
+[node name="Sprite2D5" type="Sprite2D" parent="World/CouldGroup/Clouds3" unique_id=1825347788]
+material = SubResource("CanvasItemMaterial_c3t6r")
+position = Vector2(-79, 82)
+texture = ExtResource("22_l3rmk")
+hframes = 5
+frame = 3
+
+[node name="Sprite2D6" type="Sprite2D" parent="World/CouldGroup/Clouds3" unique_id=103004926]
+material = SubResource("CanvasItemMaterial_c3t6r")
+position = Vector2(-52, 121)
+texture = ExtResource("22_l3rmk")
+hframes = 5
+frame = 2
+
+[node name="Sprite2D2" type="Sprite2D" parent="World/CouldGroup/Clouds3" unique_id=1041366432]
+position = Vector2(-6, 156)
+texture = ExtResource("22_l3rmk")
+hframes = 5
+frame = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=904130412]
 layer = 2
@@ -372,6 +583,34 @@ bbcode_enabled = true
 text = "As you know, these are [shake]barely distinguishable[/shake]
 from their harmless counterparts.
 That is why they require the experienced eye of a hunter.
+
+
+
+
+press [space] to continue"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters_behavior = 1
+
+[node name="TutorialText22" type="RichTextLabel" parent="CanvasLayer/Gui/TutorialOverlay" unique_id=1671108815]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6lyvc")
+bbcode_enabled = true
+text = "You need to pay attention to the [shake]number of eyes[/shake]
+th sum of [shake]two sides can never equal 7[/shake].
 
 
 
