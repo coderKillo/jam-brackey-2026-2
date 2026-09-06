@@ -1,16 +1,20 @@
 class_name DiceSide
-extends Sprite2D
+extends AnimatedSprite2D
 
-@export var eyes: Array[Sprite2D] = []
+@export var open_animation: String = "default"
+@export var close_animation: String = "default"
+
+var eyes: Array[Sprite2D] = []
+var animation_time: float = 0.5
 
 var _lookup = {
-	0: [0, 0, 0, 0, 0, 0],
-	1: [0, 1, 0, 0, 0, 0],
-	2: [1, 0, 0, 0, 0, 1],
-	3: [1, 1, 1, 0, 0, 0],
-	4: [1, 0, 1, 1, 0, 1],
-	5: [1, 1, 1, 1, 0, 1],
-	6: [1, 1, 1, 1, 1, 1],
+	0: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+	1: [0, 0, 0, 0, 1, 0, 0, 0, 0],
+	2: [1, 0, 0, 0, 0, 0, 0, 0, 1],
+	3: [1, 0, 0, 0, 1, 0, 0, 0, 1],
+	4: [1, 0, 1, 0, 0, 0, 1, 0, 1],
+	5: [1, 0, 1, 0, 1, 0, 1, 0, 1],
+	6: [1, 1, 1, 0, 0, 0, 1, 1, 1],
 }
 
 var _timer := 0.0
@@ -47,8 +51,12 @@ func set_number(number: int):
 func close():
 	for eye in eyes:
 		eye.scale.x = 0.0
+	play(open_animation)
+	await animation_finished
 
 
 func open():
+	play(close_animation)
+	await animation_finished
 	for eye in eyes:
 		eye.scale.x = 1.0

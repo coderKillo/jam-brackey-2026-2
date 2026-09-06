@@ -2,8 +2,6 @@
 
 [ext_resource type="Script" uid="uid://chc1gbvhaaqjk" path="res://game/dice/dice.gd" id="1_3qvf1"]
 [ext_resource type="PackedScene" uid="uid://38plq8uud3yk" path="res://game/dice/side.tscn" id="2_4lw1o"]
-[ext_resource type="Texture2D" uid="uid://cmjlo7dv5726f" path="res://assets/placeholders/theeth_side.png" id="3_iog5k"]
-[ext_resource type="Texture2D" uid="uid://counma1f8cm5t" path="res://assets/placeholders/theeth_side2.png" id="4_wxxi6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c3t6r"]
 size = Vector2(43, 44)
@@ -18,66 +16,23 @@ shape = SubResource("RectangleShape2D_c3t6r")
 [node name="Side1" parent="." unique_id=421317403 instance=ExtResource("2_4lw1o")]
 position = Vector2(-12.215389, 7)
 rotation = -2.0943952
-texture = ExtResource("3_iog5k")
-
-[node name="Eye1" parent="Side1/Eyes" parent_id_path=PackedInt32Array(421317403, 951852886) index="0" unique_id=76763270]
-position = Vector2(-16.098074, -2.1173155)
-
-[node name="Eye2" parent="Side1/Eyes" parent_id_path=PackedInt32Array(421317403, 951852886) index="1" unique_id=1812015186]
-position = Vector2(-9.999998, -6.6794934)
-
-[node name="Eye3" parent="Side1/Eyes" parent_id_path=PackedInt32Array(421317403, 951852886) index="2" unique_id=1165228399]
-position = Vector2(-2.1698723, -10.241671)
-
-[node name="Eye4" parent="Side1/Eyes" parent_id_path=PackedInt32Array(421317403, 951852886) index="3" unique_id=760545310]
-position = Vector2(0.490381, 5.1506343)
-
-[node name="Eye5" parent="Side1/Eyes" parent_id_path=PackedInt32Array(421317403, 951852886) index="4" unique_id=4236300]
-position = Vector2(6.954483, 1.9544823)
-
-[node name="Eye6" parent="Side1/Eyes" parent_id_path=PackedInt32Array(421317403, 951852886) index="5" unique_id=56170347]
-position = Vector2(13.05256, -2.6076958)
+animation = &"open1"
+open_animation = "open1"
+close_animation = "close1"
 
 [node name="Side2" parent="." unique_id=1109566900 instance=ExtResource("2_4lw1o")]
 position = Vector2(-0.21538925, -14)
 
-[node name="Eye1" parent="Side2/Eyes" parent_id_path=PackedInt32Array(1109566900, 951852886) index="0" unique_id=76763270]
-position = Vector2(-11.784611, -1)
-
-[node name="Eye2" parent="Side2/Eyes" parent_id_path=PackedInt32Array(1109566900, 951852886) index="1" unique_id=1812015186]
-position = Vector2(-3.7846107, -4)
-
-[node name="Eye3" parent="Side2/Eyes" parent_id_path=PackedInt32Array(1109566900, 951852886) index="2" unique_id=1165228399]
-position = Vector2(3.2153893, -7)
-
-[node name="Eye4" parent="Side2/Eyes" parent_id_path=PackedInt32Array(1109566900, 951852886) index="3" unique_id=760545310]
-position = Vector2(-1.7846107, 5)
-
-[node name="Eye5" parent="Side2/Eyes" parent_id_path=PackedInt32Array(1109566900, 951852886) index="4" unique_id=4236300]
-position = Vector2(5.2153893, 1)
-
 [node name="Side3" parent="." unique_id=958753902 instance=ExtResource("2_4lw1o")]
 position = Vector2(11.784611, 7)
 rotation = 2.0943952
-texture = ExtResource("4_wxxi6")
+animation = &"open2"
+frame = 4
+frame_progress = 1.0
+open_animation = "open2"
+close_animation = "close2"
 
-[node name="Eye1" parent="Side3/Eyes" parent_id_path=PackedInt32Array(958753902, 951852886) index="0" unique_id=76763270]
-position = Vector2(0.6602545, 5.1435947)
-
-[node name="Eye2" parent="Side3/Eyes" parent_id_path=PackedInt32Array(958753902, 951852886) index="1" unique_id=1812015186]
-position = Vector2(-6.8038473, 0.21539116)
-
-[node name="Eye3" parent="Side3/Eyes" parent_id_path=PackedInt32Array(958753902, 951852886) index="2" unique_id=1165228399]
-position = Vector2(-13.267948, -2.9807591)
-
-[node name="Eye4" parent="Side3/Eyes" parent_id_path=PackedInt32Array(958753902, 951852886) index="3" unique_id=760545310]
-position = Vector2(15.382686, -3.3564067)
-
-[node name="Eye5" parent="Side3/Eyes" parent_id_path=PackedInt32Array(958753902, 951852886) index="4" unique_id=4236300]
-position = Vector2(7.052559, -7.784609)
-
-[node name="Eye6" parent="Side3/Eyes" parent_id_path=PackedInt32Array(958753902, 951852886) index="5" unique_id=56170347]
-position = Vector2(0.58845615, -10.980762)
+[node name="Camera2D" type="Camera2D" parent="." unique_id=493442460]
 
 [editable path="Side1"]
 [editable path="Side2"]
